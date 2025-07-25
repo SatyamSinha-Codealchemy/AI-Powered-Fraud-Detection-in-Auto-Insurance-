@@ -1,131 +1,140 @@
-#README
+# 🚗 Auto Insurance Fraud Detection Project
 
-# 🛡 AI-Powered Fraud Detection in Auto Insurance
+## 🛠 Overview
 
-This project is designed to detect fraudulent claims in auto insurance using historical data and machine learning. The solution leverages data preprocessing, classification models, and data visualization dashboards to help insurers reduce fraud, automate claim processing, and gain actionable business insights.
-
----
-
-## 📌 Problem Statement
-
-Insurance fraud leads to substantial financial losses. The goal is to build a predictive model that flags potentially fraudulent claims (Fraud_Ind = 'Y') based on features such as customer profile, policy details, vehicle information, and accident circumstances.
+This project focuses on detecting fraudulent auto insurance claims using supervised machine learning models. It performs data cleaning, preprocessing, exploratory data analysis (EDA), model training, evaluation, and selection of the best model for predictions.
 
 ---
 
-## 🚀 Project Objectives
+## 📂 Dataset Description
 
-- Detect fraudulent auto insurance claims
-- Identify key features that drive fraud
-- Create an interactive Power BI dashboard for visual exploration
-- Generate business insights for use cases beyond fraud detection
+The project uses the following datasets:
 
----
-
-## 📂 Dataset Overview
-
-The dataset includes the following:
-
-- *Customer Data*: Age, gender, education, occupation, hobbies
-- *Policy Data*: Premium, deductible, liability limits, dates
-- *Accident Data*: Date, hour, type, severity, location, police report
-- *Vehicle Data*: Make, model, year, color, cost, mileage
-- *Claim Data*: Total claimed, breakdown by type, claim date
-- *Target Variable*: Fraud_Ind (Y/N)
+- `Auto_Insurance_Fraud_Claims_File01.csv`: Main training dataset
+- `Auto_Insurance_Fraud_Claims_File02.csv`: Additional training dataset
+- `Auto_Insurance_Fraud_Claims_File03.csv`: Test dataset
+- `Auto_Insurance_Fraud_Claims_Results_Submission.csv`: Submission format
 
 ---
 
-## 🛠 Approach
-The project aims to identify fraudulent auto insurance claims using a supervised classification approach. 
-It performs preprocessing and compares multiple machine learning models to evaluate which performs best 
-in terms of detecting fraud accurately.
+## 📌 Project Workflow
 
-📌 Includes:
-- Dataset loading and inspection
-- Data cleaning and preprocessing
-- Label encoding and scaling
-- Multiple classification models:
-  • Logistic Regression
-  • Random Forest
-  • XGBoost
-  • LightGBM
-  • SVM
-  • KNN
-  • Naive Bayes
-  • Decision Trees
-  • LDA & QDA
-- Model evaluation using:
-  • Accuracy
-  • Precision
-  • Recall
-  • F1 Score
-  • Confusion Matrix
-  • ROC AUC Score
+### 1. Data Cleaning & Preprocessing
 
-### 1. Data Preprocessing
-- Handled missing values (Police_Report, authorities_contacted)
-- Converted date columns and calculated Claim_Delay
-- Encoded categorical variables
-- Created Fraud_Flag as binary target (1 = Fraud, 0 = Genuine)
-
-### 2. Model Building
-- Used *Random Forest Classifier* as baseline
-- (Optional: Tested XGBoost, Logistic Regression)
-- Evaluated with accuracy, precision, recall, and feature importance
-
-### 3. Visualization
-- Built interactive dashboards using:
-  - *Power BI* (state-wise fraud, claim timing, vehicle risk)
-  - *Streamlit* (model insights, fraud breakdown)
+- ✅ Removed duplicates
+- ✅ Handled missing values (mode for categorical, median for numerical)
+- ✅ Removed outliers using Interquartile Range (IQR)
+- ✅ Label encoding for categorical columns
+- ✅ Dropped non-useful columns like `Claim_ID`, `Policy_Start_Date`, etc.
 
 ---
 
-## 🧠 Why These Algorithms?
+### 2. Exploratory Data Analysis (EDA)
 
-- *Random Forest*:
-  - Excellent for mixed-type data
-  - Interpretable (feature importance)
-  - Less prone to overfitting
-- *Classification models* (not regression) are suited since the target (Fraud_Ind) is binary
+- 📊 Pie chart for class distribution (`Fraud_Ind`)
+- 📊 Bar chart for top 5 `Claim_Type` (if present)
+- 📊 Histograms for top KPIs like:
+  - `Age`
+  - `Days_To_Claim`
+  - `Claim_Amount`
+  - `Number_of_Damages`
+  - `Policy_Holder_Age`
 
 ---
 
-## 🏆 Results
+### 3. Model Building & Evaluation
 
-- *Accuracy*: ~88–92%
-- *Top Predictors*:
-  - Accident_Severity
-  - Policy_Expiry_Date
-  - Insured_Zip
-  - DL_Expiry_Date
-- Dashboard insights revealed fraud patterns by location, vehicle type, time, and more.
+Multiple models were trained and evaluated:
+
+- 🔍 **Logistic Regression**
+- 🌲 **Random Forest**
+- 🧠 **Naive Bayes**
+- 🔗 **Voting Classifier** (soft voting with LR, RF, NB)
+
+Evaluation metrics used:
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- Confusion Matrix (with heatmap)
+- ROC AUC Score (if needed)
+
+📈 Based on the comparison, the best performing model is selected for final prediction.
+
+---
+
+### 4. Final Prediction and Submission
+
+- The selected model is used to predict fraud (`Fraud_Ind`) on the test dataset.
+- Predictions are mapped to `Y` (Fraud) and `N` (Not Fraud)
+- Output is saved to `Final_Submission.csv`.
+
+---
+
+## ✅ Results
+
+- **Best Accuracy:** ~89–92% with Voting Classifier
+- **Top Features Identified:**
+  - `Accident_Severity`
+  - `Claim_Amount`
+  - `Policy_Expiry_Date`
+  - `Insured_Zip`
+  - `DL_Expiry_Date`
+
+---
+
+## 📊 Visualizations
+
+- Seaborn & Matplotlib plots for distribution
+- Confusion matrix heatmaps
+- KPI charts
+- (Optional) Streamlit / Power BI dashboards
 
 ---
 
 ## 💼 Business Use Cases
 
-✅ *Fraud Detection*  
-🧠 Flag risky claims for manual review
-
-✅ *Faster Approvals*  
-🧠 Auto-approve low-risk, low-value claims
-
-✅ *Customer Retention*  
-🧠 Use Customer_Life_Value and renewal dates to target churn
-
-✅ *Safe Driver Scoring*  
-🧠 Use behavior data to offer rewards or adjust pricing
-
-✅ *Geographical Risk Mapping*  
-🧠 Identify high-risk cities and ZIP codes for fraud or heavy claims
-
-✅ *Vehicle Risk Analysis*  
-🧠 Customize premiums based on make/model accident trends
-
+- 🔍 **Fraud Detection:** Automatically flag suspicious claims for manual review
+- 🚀 **Faster Approvals:** Auto-approve safe, low-value claims
+- 🧠 **Churn Prevention:** Use lifetime value and renewal status
+- 🗺️ **Risk Mapping:** Identify fraud-prone ZIP codes and vehicle types
+- 🚗 **Vehicle Scoring:** Adjust premiums based on vehicle accident trends
 
 ---
 
-## 📊 Tools Used
+## 🧰 Tools & Libraries Used
 
-- Python (Pandas, scikit-learn, matplotlib, Streamlit)
-- Google Colab Notebook
-- CSV data files
+- Python (Pandas, NumPy, Matplotlib, Seaborn)
+- Scikit-learn (classification models)
+- Google Colab (for development and execution)
+- LabelEncoder, RandomForest, LogisticRegression, NaiveBayes, VotingClassifier
+
+---
+
+## 📁 Output Files
+
+- `Final_Submission.csv` — test predictions with `Fraud_Ind` in Y/N format
+- Confusion matrix and model performance metrics
+- EDA charts
+
+---
+
+## 🚀 How to Run
+
+1. Load all CSV files into the same directory.
+2. Run the Jupyter Notebook / Python script.
+3. Review EDA outputs and model performance.
+4. Download or review `Final_Submission.csv`.
+
+---
+
+## 🤝 Contributing
+
+Feel free to contribute improvements, alternate model suggestions, or dashboard enhancements!
+
+---
+
+## 📧 Contact
+
+If you have questions or feedback, feel free to reach out.
+
