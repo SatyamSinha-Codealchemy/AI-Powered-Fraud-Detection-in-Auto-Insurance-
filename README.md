@@ -1,8 +1,19 @@
 # 🚗 Auto Insurance Fraud Detection Project
+AI-Powered Fraud Detection in Auto Insurance: Predictive Modeling for Smarter  Claims Management
 
-## 🛠 Overview
+# 🛡 AI-Powered Fraud Detection in Auto Insurance
+This project is designed to detect fraudulent claims in auto insurance using historical data and machine learning. The solution leverages data preprocessing, classification models, and data visualization dashboards to help insurers reduce fraud, automate claim processing, and gain actionable business insights.
+---
 
-This project focuses on detecting fraudulent auto insurance claims using supervised machine learning models. It performs data cleaning, preprocessing, exploratory data analysis (EDA), model training, evaluation, and selection of the best model for predictions.
+## 📌 Problem Statement
+Insurance fraud leads to substantial financial losses. The goal is to build a predictive model that flags potentially fraudulent claims (Fraud_Ind = 'Y') based on features such as customer profile, policy details, vehicle information, and accident circumstances.
+
+---
+## 🚀 Project Objectives
+- Detect fraudulent auto insurance claims
+- Identify key features that drive fraud
+- Create an interactive Power BI dashboard for visual exploration
+- Generate business insights for use cases beyond fraud detection
 
 ---
 
