@@ -35,6 +35,31 @@ The dataset includes the following:
 ---
 
 ## 🛠 Approach
+The project aims to identify fraudulent auto insurance claims using a supervised classification approach. 
+It performs preprocessing and compares multiple machine learning models to evaluate which performs best 
+in terms of detecting fraud accurately.
+
+📌 Includes:
+- Dataset loading and inspection
+- Data cleaning and preprocessing
+- Label encoding and scaling
+- Multiple classification models:
+  • Logistic Regression
+  • Random Forest
+  • XGBoost
+  • LightGBM
+  • SVM
+  • KNN
+  • Naive Bayes
+  • Decision Trees
+  • LDA & QDA
+- Model evaluation using:
+  • Accuracy
+  • Precision
+  • Recall
+  • F1 Score
+  • Confusion Matrix
+  • ROC AUC Score
 
 ### 1. Data Preprocessing
 - Handled missing values (Police_Report, authorities_contacted)
@@ -95,6 +120,7 @@ The dataset includes the following:
 
 ✅ *Vehicle Risk Analysis*  
 🧠 Customize premiums based on make/model accident trends
+
 
 ---
 
